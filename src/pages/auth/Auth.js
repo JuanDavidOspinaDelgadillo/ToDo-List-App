@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useApolloClient, gql } from "@apollo/client";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { registerUser, loginUser, onAuthStateChangedListener } from "../config/Firebase";
+import { registerUser, loginUser, onAuthStateChangedListener } from "../../config/Firebase";
+
+import '../auth/Auth.css';
 
 const LOGIN_QUERY = gql`
   query Login($email: String!, $password: String!) {
@@ -140,10 +142,10 @@ const Auth = () => {
       </Button>
 
       <Button
-        className="button-switch-login-register"
-        variant="text"
-        fullWidth
+        className="button-login-register"
+        variant="contained"
         color="inherit"
+        fullWidth
         onClick={() => setIsLogin(!isLogin)}
       >
         {isLogin

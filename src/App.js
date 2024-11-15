@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import client from './config/ApolloClient';
-import Auth from './pages/Auth'
-import Home from './pages/Home'
-import './App.css';
+import client from './config/ApolloClient';  
+import Auth from './pages/auth/Auth'; 
+import Home from './pages/home/Home'; 
+import './pages/auth/Auth.css';
 
 function App() {
   return (

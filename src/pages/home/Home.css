@@ -1,0 +1,16 @@
+.button-logout {
+    border-radius: 30px;
+    padding: 10px 0;
+    font-weight: bold;
+    text-transform: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000;
+  }
+  
+  .home-container {
+    padding-top: 60px; 
+  }
