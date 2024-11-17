@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useApolloClient, gql } from "@apollo/client";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { registerUser, loginUser, onAuthStateChangedListener } from "../../config/Firebase";
-
 import '../auth/Auth.css';
 
 const LOGIN_QUERY = gql`
   query Login($email: String!, $password: String!) {
     users(where: { email: { _eq: $email }, password: { _eq: $password } }) {
       id
-      email
     }
   }
 `;
@@ -19,8 +16,6 @@ const REGISTER_MUTATION = gql`
   mutation Register($name: name!, $email: String!, $password: String!) {
     insert_users_one(object: { name: $name, email: $email, password: $password }) {
       id
-      name
-      email
     }
   }
 `;
@@ -34,30 +29,18 @@ const Auth = () => {
   const client = useApolloClient();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        console.log("User authenticated: ", user);
-      } else {
-        console.log("User not authenticated.");
-      }
-    });
-    return unsubscribe;
-  }, []);
-
   const handleLogin = async () => {
     if (!email || !password) {
       setError("Please fill out all fields.");
       return;
     }
     try {
-      await loginUser(email, password);
       const { data } = await client.query({
         query: LOGIN_QUERY,
         variables: { email, password },
       });
-
       if (data.users.length > 0) {
+        localStorage.setItem("userId", data.users[0].id);
         alert("Logged in successfully!");
         navigate("/home");
       } else {
@@ -74,14 +57,14 @@ const Auth = () => {
       setError("Please fill out all fields.");
       return;
     }
+    console.log(name, email, password);
     try {
-      await registerUser(email, password);
       const { data } = await client.mutate({
         mutation: REGISTER_MUTATION,
         variables: { name, email, password },
       });
-
-      if (data.insert_users_one) {
+      if (data && data.insert_users_one) {
+        localStorage.setItem("userId", data.insert_users_one.id);
         alert("User registered successfully!");
         navigate("/home");
       } else {
