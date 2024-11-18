@@ -1,4 +1,18 @@
-/* Estilo para el botón de logout en la esquina superior derecha */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; 
+  width: 100vw;
+}
+
+.home-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(128,128,128,1) 32%, rgba(164,164,164,1) 40%, rgba(255,255,255,1) 64%); 
+}
+
 .button-logout {
   border-radius: 30px;
   font-weight: bold;
@@ -9,24 +23,21 @@
   height: 30px;
   font-size: 10px;
   position: fixed;
-  top: 20px;  /* Alineación a la parte superior */
-  right: 20px;  /* Alineación a la derecha */
-  z-index: 1000;  /* Asegura que el botón esté por encima de las tarjetas */
+  top: 40px;
+  left: 85%;
+
+
 }
 
-/* Contenedor principal de la página */
-.home-container {
-  padding-top: 80px;  /* Espacio suficiente para las tarjetas debajo del botón */
-  width: 100%;
-}
-
-/* Contenedor de la lista de tareas */
 .task-list {
+  flex-direction: column;  
+  gap: 16px; 
+  align-items: flex-start;  
+  margin-top: 10px; 
   display: flex;
-  flex-direction: column;  /* Coloca las tarjetas de tarea en una columna */
-  gap: 16px;  /* Espacio entre las tarjetas */
-  align-items: flex-start;  /* Alinea las tarjetas a la izquierda */
-  margin-top: 500px;  /* Espacio superior de las tarjetas */
+  justify-content: start;
+  padding-left: 17%;
+  padding-top: 5%;
 }
 
 .task-card {
@@ -74,7 +85,6 @@
   z-index: 1000;  
 }
 
-/* Estilo para los botones del modal */
 .modal-button {
   margin-top: 20px;
 }

@@ -4,15 +4,14 @@ import { ApolloProvider } from '@apollo/client';
 import client from './components/ApolloClient';  
 import Auth from './pages/auth/Auth'; 
 import Home from './pages/home/Home'; 
-import './App.css';
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-        <Route path="/" element={<Auth/>} />
-        <Route path="/home" element={<Home/>}  />
+          <Route path="/" element={<Auth/>} />
+          <Route path="/home" element={<Home/>}  />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -11,7 +11,7 @@ const Home = () => {
     const [difficulty, setDifficulty] = useState('');
     const [state, setState] = useState('');
     const [tasks, setTasks] = useState([]);
-    const [selectedTask, setSelectedTask] = useState(null);  // Nueva tarea seleccionada
+    const [selectedTask, setSelectedTask] = useState(null);
     const [error, setError] = useState('');
     const client = useApolloClient();
     const navigate = useNavigate();
@@ -153,14 +153,13 @@ const Home = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const userId = parseInt(localStorage.getItem('userId'))
+                const userId = parseInt(parseInt(localStorage.getItem('userId')));
                 const { data } = await client.query({
                     query: GET_TASKS,
                     variables: { userId }
                 });
-                console.log(localStorage.getItem('userId'));
-                console.log("Fetched Tasks:", data.tasks);
                 setTasks(data.tasks);
+                console.log(data)
             } catch (error) {
                 console.error("Error fetching tasks: ", error);
                 setError(error.message);
@@ -178,7 +177,8 @@ const Home = () => {
     }
 
     return (
-        <Container className="home-container">
+        <div className="home-container">
+
             <Button
                 className="button-logout"
                 variant="contained"
@@ -186,19 +186,19 @@ const Home = () => {
                 onClick={handleLogout}>
                 LogOut
             </Button>
+                <div className="task-list">
+                    {tasks.map(task => (
+                        <div 
+                            key={task.id} 
+                            className="task-card" 
+                            onClick={() => handleSelectTask(task)}
+                        >
+                            <h3>{task.tittle}</h3>
+                            <p>{task.state} | Difficulty: {task.difficulty}</p>
+                        </div>
+                    ))}
+                </div>
             
-            <div className="task-list">
-                {tasks.map(task => (
-                    <div 
-                        key={task.id} 
-                        className="task-card" 
-                        onClick={() => handleSelectTask(task)}
-                    >
-                        <h3>{task.tittle}</h3>
-                        <p>{task.state} | Difficulty: {task.difficulty}</p>
-                    </div>
-                ))}
-            </div>
 
             {selectedTask && (
                 <Modal
@@ -216,7 +216,7 @@ const Home = () => {
                     </Box>
                 </Modal>
             )}
-        </Container>
+        </div>
     );
 }
 
