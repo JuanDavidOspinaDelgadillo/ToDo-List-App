@@ -1,24 +1,9 @@
 import React, { useState } from "react";
-import { useApolloClient, gql } from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import '../auth/Auth.css';
-
-const LOGIN_QUERY = gql`
-  query Login($email: String!, $password: String!) {
-    users(where: { email: { _eq: $email }, password: { _eq: $password } }) {
-      id
-    }
-  }
-`;
-
-const REGISTER_MUTATION = gql`
-  mutation Register($name: name!, $email: String!, $password: String!) {
-    insert_users_one(object: { name: $name, email: $email, password: $password }) {
-      id
-    }
-  }
-`;
+import '../styles/Auth.css';
+import { LOGIN_QUERY, REGISTER_MUTATION } from "../queries/AuthQueries";
 
 const Auth = () => {
   const [name, setName] = useState("");

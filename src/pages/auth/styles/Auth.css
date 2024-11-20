@@ -4,8 +4,14 @@
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
+  margin-top: 200px;
+  margin-bottom: 330px;
   animation: fadeIn 1s ease-in-out;
   color: #333;
+}
+
+body {
+  background-color: #FFFAF0;
 }
 
 @keyframes fadeIn {
@@ -36,5 +42,5 @@
 }
 
 .button-login-register:hover {
-  background-color: #538cdc; 
+  background-color: #8FBC8F; 
 }
