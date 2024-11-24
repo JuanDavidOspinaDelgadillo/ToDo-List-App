@@ -1,23 +1,22 @@
-/* General */
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%; /* Asegura que el body ocupe toda la pantalla */
-  overflow: hidden; /* Evita scroll innecesario */
+  height: 100%;
+  overflow: hidden;
+  font-family: Ariaal, sans-serif;
 }
 
 #root {
-  height: 100%; /* El root ocupa toda la pantalla */
-  display: flex; /* Layout flexible para navbar y home-container */
+  height: 100%;
+  display: flex;
 }
 
-/* Navbar lateral */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%; /* Ocupa toda la altura de la pantalla */
-  width: 60px; /* Ancho contraído */
+  height: 100%;
+  width: 60px;
   background-color: #333;
   color: white;
   display: flex;
@@ -29,7 +28,7 @@ body, html {
 }
 
 .navbar.open {
-  width: 200px; /* Ancho expandido */
+  width: 200px;
 }
 
 .navbar .icon-button {
@@ -61,63 +60,86 @@ body, html {
   background-color: #444;
 }
 
-/* Contenedor principal ajustado */
+.button-logout {
+  top: 650px;
+}
+
 .home-container {
-  margin-left: 60px; /* Espacio para el navbar contraído */
-  width: calc(100% - 60px); /* Ancho dinámico según el navbar */
-  height: 100%; /* Ocupa todo el espacio restante */
+  margin-left: 60px;
+  width: calc(100% - 60px);
+  height: 100%;
   background: #FFFAF0;
   padding: 20px;
-  overflow-y: auto; /* Solo permite scroll vertical si el contenido lo requiere */
+  overflow-y: hidden;
   transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 .navbar.open + .home-container {
-  margin-left: 200px; /* Espacio para el navbar expandido */
+  margin-left: 200px;
   width: calc(100% - 200px);
 }
 
-/* Lista de tareas */
-.task-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
+.task-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 
-/* Tarjetas de tareas */
-.task-card {
-  width: 100%;
-  max-width: 300px;
+.task-column {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-column h2 {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
 .task-card:hover {
   transform: translateY(-5px);
 }
 
-.task-card h3 {
+.state-indicator {
+  width: 10px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  margin-right: 10px;
+}
+
+.task-info h3 {
   margin: 0;
   font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
-.task-card p {
-  margin: 0;
-  font-size: 1em;
+.task-info p {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #555;
 }
 
-/* Modal de detalles */
 .task-details-modal {
   position: absolute;
   top: 20%;
@@ -130,6 +152,7 @@ body, html {
   max-width: 500px;
   width: 90%;
   z-index: 1000;
+  gap: 20px;
 }
 
 .modal-button {
