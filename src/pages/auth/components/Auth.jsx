@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useApolloClient } from "@apollo/client";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -60,6 +60,10 @@ const Auth = () => {
       setError(error.message);
     }
   };
+
+  useEffect(() => {
+    localStorage.removeItem('userId');
+  })
 
   return (
     <Container maxWidth="xs" className="auth-container">
