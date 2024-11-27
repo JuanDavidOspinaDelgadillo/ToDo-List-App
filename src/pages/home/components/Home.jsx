@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Button, Modal, Box, Typography, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu"; 
 import CloseIcon from "@mui/icons-material/Close"; 
+import DeleteIcon from "@mui/icons-material/Delete"; // Icono de basurita
+import EditIcon from "@mui/icons-material/Edit";  
 import "../styles/Home.css";
 import dayjs from "dayjs";
 import { GET_TASKS, DELETE_TASK } from "../queries/HomeQueries";
@@ -93,9 +95,6 @@ const Home = () => {
             <div className="navbar-content">
               <Button variant="text" color="inherit" onClick={() => navigate('/form')}>
                 Create Task
-              </Button>
-              <Button variant="text" color="inherit" onClick={() => navigate('/galery')}>
-                Gallery
               </Button>
               <Button
                 className="button-logout"
@@ -208,36 +207,39 @@ const Home = () => {
                 <Box className="task-details-modal">
                   <Typography variant="h4">{selectedTask.tittle}</Typography>
                   <br></br>
-                  <br></br>
-                  <Typography variant="h6">
-                    Difficulty: {selectedTask.difficulty}
+                  <Typography variant="body2">Difficulty: {selectedTask.difficulty}
                   </Typography>
-                  <br></br>
-                  <Typography variant="body1">State: {selectedTask.state}</Typography>
-                  <br></br>
+                  <Typography variant="body2">State: {selectedTask.state}</Typography>
                   <Typography variant="body2">
                     Description: {selectedTask.description}
                   </Typography>
-                  <br></br>
                   <Typography variant="body2">
                     Created at:{" "}
                     {dayjs(selectedTask.created_at).format("YYYY-MM-DD HH:mm:ss")}
                   </Typography>
-                  <br></br>
                   <Typography variant="body2">
                     Updated at:{" "}
                     {dayjs(selectedTask.updated_at).format("YYYY-MM-DD HH:mm:ss")}
                   </Typography>
                   <br></br>
-                  <Button className="modal-button" onClick={handleCloseModal}>
-                    Close
-                  </Button>
-                  <Button className="modal-button" onClick={() => handleDeleteTask(selectedTask.id)}>
-                    Delete
-                  </Button>
-                  <Button className="modal-button" onClick={() => navigate('/form')}>
-                    Update
-                  </Button>
+                  {selectedTask.image_url && (
+                    <img
+                      src={selectedTask.image_url}
+                      alt={`Imagen de la tarea: ${selectedTask.tittle}`}
+                    />
+                  )}
+                  <br></br>
+                  <Button 
+                    className="modal-button-delete" 
+                    startIcon={<DeleteIcon/>} 
+                    color="error" onClick={() => handleDeleteTask(selectedTask.id)}/>
+                  <Button 
+                    className="modal-button-update" 
+                    startIcon={<EditIcon/>} 
+                    color="success" onClick={() => {
+                    localStorage.setItem("taskId", selectedTask.id);
+                    navigate('/form')}
+                  }/>
                 </Box>
               </Modal>
             )}

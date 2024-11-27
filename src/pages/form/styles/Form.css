@@ -1,3 +1,47 @@
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  animation: fadeIn 1s ease-in-out;
+  color: #333;
+  transition: margin-left 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-container .MuiTypography-root {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container .MuiButton-root {
+  margin-top: 16px;
+}
+
+.form-container .MuiTextField-root {
+  margin-top: 12px;
+}
+
+.button-create-update {
+  border-radius: 30px;
+  padding: 10px 0;
+  font-weight: bold;
+  text-transform: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.button-create-update:hover {
+  background-color: #8FBC8F; 
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -48,10 +92,5 @@
   }
   
   .button-logout {
-    top: 650px;
-  }
-
-.navbar.open + .home-container {
-    margin-left: 200px;
-    width: calc(100% - 200px);
+    top: 400px;
   }

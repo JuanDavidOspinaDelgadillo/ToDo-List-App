@@ -10,6 +10,7 @@ const GET_TASKS = gql`
                 difficulty
                 created_at
                 updated_at
+                image_url
             }
         }
     `;
